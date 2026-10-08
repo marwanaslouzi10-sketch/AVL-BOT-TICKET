@@ -3,12 +3,9 @@ const { REST, Routes, SlashCommandBuilder } = require("discord.js");
 
 const token = process.env.DISCORD_BOT_TOKEN;
 const clientId = process.env.CLIENT_ID;
-const guildId = process.env.GUILD_ID;
 
-if (!token || !clientId || !guildId) {
-  throw new Error(
-    "Missing DISCORD_BOT_TOKEN, CLIENT_ID or GUILD_ID"
-  );
+if (!token || !clientId) {
+  throw new Error("Missing DISCORD_BOT_TOKEN or CLIENT_ID");
 }
 
 const commands = [
@@ -23,13 +20,13 @@ const rest = new REST({ version: "10" }).setToken(token);
 async function main() {
   try {
     await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
+      Routes.applicationCommands(clientId),
       { body: commands }
     );
 
-    console.log("AVL Ticket Bot: command registered!");
+    console.log("Global ticket command registered successfully!");
   } catch (error) {
-    console.error("Failed to register command:", error.message);
+    console.error("Command registration failed:", error.message);
     process.exitCode = 1;
   }
 }
