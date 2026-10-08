@@ -1,0 +1,13 @@
+
+{
+  "name": "avl-ticket-bot",
+  "version": "1.0.0",
+  "description": "AVL bilingual Discord ticket bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.19.3"
+  }
+}
